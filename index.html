@@ -1,11 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Magicnas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Cormorant+Garamond:wght@400;500&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    
+
+  <header class="hero">
+
+    <!-- Navigation -->
+    <nav class="navbar">
+      <a href="#" class="logo">
+        <svg class="logo-crown" viewBox="0 0 24 16" aria-hidden="true">
+          <path d="M1 15 L3 3 L8 9 L12 1 L16 9 L21 3 L23 15 Z" fill="currentColor"/>
+        </svg>
+        <span>MAGICNAS</span>
+      </a>
+
+      <button class="menu-toggle" aria-label="Toggle menu">&#9776;</button>
+
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+
+    <!-- Hero image with golden swirl -->
+    <div class="hero-visual">
+      <div class="swirl swirl-ring"></div>
+      <div class="swirl swirl-wave"></div>
+      <span class="sparkle s1"></span>
+      <span class="sparkle s2"></span>
+      <span class="sparkle s3"></span>
+      <span class="sparkle s4"></span>
+      <img src="magician.png" alt="Magician holding colorful magic wands" class="hero-person">
+    </div>
+
+    <!-- Headline -->
+    <div class="hero-content">
+      <h1>Where <span>Wonder</span> Meets Extraordinary Magic.</h1>
+    </div>
+
+  </header>
+
+  <script>
+    document.querySelector('.menu-toggle').addEventListener('click', function () {
+      document.querySelector('.nav-links').classList.toggle('open');
+    });
+  </script>
 </body>
 </html>
