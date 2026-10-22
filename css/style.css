@@ -1,26 +1,53 @@
-/* ---------- Reset & variables ---------- */
+/* ==========================================================
+   Magicnas
+   Colors: white, ivory, gold, charcoal
+   Fonts: Playfair Display (headings), Inter (text)
+   ========================================================== */
+
+:root {
+  --white: #ffffff;
+  --ivory: #faf8f2;
+  --soft-gold: #f8f0de;
+  --sand: #e9e5dc;
+
+  --gold: #b88a3b;
+  --gold-dark: #96702e;
+
+  --text-main: #252525;
+  --text-body: #666666;
+  --border: #e4dfd4;
+
+  --container: 1200px;
+  --nav-height: 80px;
+  --section-space: 72px;
+}
+
+/* ---------- Reset ---------- */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-:root {
-  --gold: #b8975a;
-  --gold-dark: #8a6a2f;
-  --gold-light: #e3c887;
-  --text: #1a1a1a;
-  --container: 1200px;
-  --nav-height: 80px;
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  font-family: "Cormorant Garamond", Georgia, serif;
-  color: var(--text);
-  background: #fff;
+  font-family: "Inter", system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--text-body);
+  background: var(--white);
+}
+
+img {
+  display: block;
+  max-width: 100%;
 }
 
 a {
+  color: inherit;
   text-decoration: none;
 }
 
@@ -28,105 +55,747 @@ ul {
   list-style: none;
 }
 
-/* ---------- Hero ---------- */
-.hero {
-  position: relative;
-  padding-top: var(--nav-height);   /* reserved band for logo + menu */
-  overflow: hidden;
-  background: #fffdf8;
+button {
+  font: inherit;
 }
 
-/* Banner image keeps its own aspect ratio, so nothing gets cropped */
+/* ---------- Layout ---------- */
+.container {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+.section {
+  padding: var(--section-space) 0;
+}
+
+.bg-ivory {
+  background: var(--ivory);
+}
+
+.center {
+  text-align: center;
+}
+
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+/* ---------- Text ---------- */
+.gold {
+  color: var(--gold);
+}
+
+.label {
+  margin-bottom: 16px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.section-title {
+  margin-bottom: 20px;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(32px, 4vw, 52px);
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--text-main);
+}
+
+.center .section-title,
+.section-title.center {
+  margin-bottom: 36px;
+}
+
+.text {
+  max-width: 560px;
+}
+
+.text + .text {
+  margin-top: 16px;
+}
+
+/* ---------- Buttons ---------- */
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 32px;
+}
+
+.btn {
+  display: inline-block;
+  padding: 14px 28px;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.2;
+  text-align: center;
+  border: 2px solid var(--gold);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.btn-gold {
+  color: var(--white);
+  background: var(--gold);
+}
+
+.btn-gold:hover {
+  background: var(--gold-dark);
+  border-color: var(--gold-dark);
+}
+
+.btn-outline {
+  color: var(--text-main);
+}
+
+.btn-outline:hover {
+  color: var(--white);
+  background: var(--gold);
+}
+
+.btn-white {
+  color: var(--text-main);
+  background: var(--white);
+  border-color: var(--white);
+}
+
+.btn-white:hover {
+  color: var(--white);
+  background: var(--text-main);
+  border-color: var(--text-main);
+}
+
+
+/* ==========================================================
+   Hero + navbar
+   ========================================================== */
+.hero {
+  position: relative;
+  padding-top: var(--nav-height);
+  overflow: hidden;
+}
+
 .hero-bg {
-  display: block;
   width: 100%;
   height: auto;
 }
 
-/* ---------- Navbar ---------- */
+/* light panel so the text is readable over the photo */
+.hero::before {
+  content: "";
+  position: absolute;
+  top: var(--nav-height);
+  right: 0;
+  bottom: 0;
+  width: 52%;
+  z-index: 3;
+  background: linear-gradient(to left, rgba(250, 248, 242, 0.95) 70%, rgba(250, 248, 242, 0));
+}
+
 .navbar {
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
-  z-index: 5;
-  max-width: var(--container);
+  z-index: 6;
   height: var(--nav-height);
-  margin: 0 auto;
-  padding: 0 40px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding: 0 max(40px, calc((100% - var(--container)) / 2 + 40px));
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
 }
 
 .logo {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  color: var(--gold);
   font-family: "Cinzel", serif;
+  font-size: 24px;
   font-weight: 700;
-  font-size: 22px;
   letter-spacing: 1px;
-}
-
-.logo-crown {
-  width: 16px;
-  height: 11px;
+  color: var(--gold);
 }
 
 .nav-links {
   display: flex;
-  gap: 40px;
+  gap: 36px;
 }
 
 .nav-links a {
-  color: var(--text);
-  font-size: 19px;
-  letter-spacing: 1px;
+  font-size: 14px;
+  font-weight: 500;
   text-transform: uppercase;
-  transition: color 0.3s;
+  color: var(--text-main);
+  transition: color 0.2s;
 }
 
 .nav-links a:hover {
   color: var(--gold);
 }
 
-/* ---------- Headline (right side, clear of the wands) ---------- */
-.hero-inner {
+.hero-text {
   position: absolute;
   top: var(--nav-height);
   bottom: 0;
-  left: 57%;
-  right: 3%;
+  left: 60%;
+  right: 4%;
   z-index: 4;
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
 }
 
 .hero-text h1 {
+  margin-bottom: 20px;
   font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(34px, 3.3vw, 62px);
+  font-weight: 700;
+  line-height: 1.15;
+  color: var(--text-main);
+}
+
+
+/* ==========================================================
+   Selected moments
+   ========================================================== */
+.moments-img {
+  width: 100%;
+  aspect-ratio: 4 / 3.4;
+  object-fit: cover;
+}
+
+.moments-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin-top: 14px;
+  font-size: 14px;
+}
+
+.moments-nav {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--text-main);
+}
+
+.moments-nav button {
+  width: 34px;
+  height: 34px;
+  font-size: 22px;
+  line-height: 1;
+  color: var(--text-main);
+  background: var(--white);
+  border: 1px solid var(--border);
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.moments-nav button:hover {
+  color: var(--white);
+  background: var(--gold);
+  border-color: var(--gold);
+}
+
+.quote {
+  margin-top: 28px;
+  padding-left: 24px;
+  border-left: 3px solid var(--gold);
+}
+
+.quote p {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 20px;
+  font-style: italic;
+  color: var(--text-main);
+}
+
+.quote cite {
+  display: block;
+  margin-top: 8px;
+  font-size: 13px;
+  font-style: normal;
+}
+
+
+/* ==========================================================
+   The reaction
+   ========================================================== */
+.reaction {
+  padding-bottom: 0;
+}
+
+.reaction-img {
+  width: 100%;
+  height: 520px;
+  object-fit: cover;
+}
+
+
+/* ==========================================================
+   Services
+   ========================================================== */
+.services-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 40px;
+  margin-bottom: 48px;
+}
+
+.services-head .section-title {
+  margin-bottom: 0;
+}
+
+.occasion-list {
+  display: flex;
+  gap: 10px;
+  height: 560px;
+}
+
+.occasion {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-align: left;
+  color: var(--white);
+  background: #333;
+  border: 0;
+  cursor: pointer;
+  transition: flex 0.4s ease;
+}
+
+.occasion.is-active {
+  flex: 5;
+  cursor: default;
+}
+
+.occasion img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* dark layer so the white text is readable on any photo */
+.occasion::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: rgba(0, 0, 0, 0.55);
+}
+
+.occasion.is-active::before {
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.occasion span {
+  position: absolute;
+  z-index: 2;
+}
+
+.occasion-name {
+  top: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 24px;
+  font-weight: 700;
+  white-space: nowrap;
+  writing-mode: vertical-rl;
+}
+
+.occasion.is-active .occasion-name {
+  left: 30px;
+  transform: none;
+  font-size: 36px;
+  writing-mode: horizontal-tb;
+}
+
+.occasion-desc {
+  left: 30px;
+  bottom: 30px;
+  max-width: 520px;
+  display: none;
+}
+
+.occasion.is-active .occasion-desc {
+  display: block;
+}
+
+
+/* ==========================================================
+   About
+   ========================================================== */
+.about {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 700px;
+}
+
+.about-photo {
+  position: relative;
+}
+
+.about-photo img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.about-copy {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  max-width: 720px;
+  padding: var(--section-space) 6vw;
+}
+
+
+/* ==========================================================
+   Blog
+   ========================================================== */
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+
+.blog-card {
+  overflow: hidden;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+.blog-card a {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.blog-card img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+.blog-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 24px;
+}
+
+.blog-body h3 {
+  margin-bottom: 10px;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 22px;
+  line-height: 1.3;
+  color: var(--text-main);
+}
+
+.blog-body p {
+  flex: 1;
+  font-size: 15px;
+}
+
+.read-more {
+  margin-top: 16px;
+  font-size: 14px;
   font-weight: 600;
-  font-size: max(26px, 2.9vw);
-  line-height: 1.2;
+  color: var(--gold);
+}
+
+.blog-card:hover h3,
+.blog-card:hover .read-more {
   color: var(--gold-dark);
-  background: linear-gradient(135deg, var(--gold-dark) 0%, #c9a65e 50%, var(--gold-dark) 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
 }
 
-.hero-text h1 span {
-  background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 50%, var(--gold) 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+
+/* ==========================================================
+   Testimonial
+   ========================================================== */
+.testimonial {
+  background: var(--soft-gold);
 }
 
-/* ---------- Small screens ---------- */
+.testimonial .label,
+.testimonial cite {
+  color: var(--text-main);
+}
+
+.testimonial blockquote p {
+  max-width: 900px;
+  margin: 0 auto;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(26px, 3.6vw, 46px);
+  font-style: italic;
+  line-height: 1.4;
+  color: var(--text-main);
+}
+
+.testimonial cite {
+  display: block;
+  margin-top: 24px;
+  font-size: 13px;
+  font-style: normal;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+
+/* ==========================================================
+   FAQ
+   ========================================================== */
+.faq {
+  align-items: start;
+}
+
+.faq-list {
+  border-top: 1px solid var(--border);
+}
+
+.faq-list details {
+  border-bottom: 1px solid var(--border);
+}
+
+.faq-list summary {
+  position: relative;
+  padding: 24px 40px 24px 0;
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--text-main);
+  cursor: pointer;
+  list-style: none;
+}
+
+.faq-list summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-list summary::after {
+  content: "+";
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 26px;
+  font-weight: 400;
+}
+
+.faq-list details[open] summary::after {
+  content: "\2212";
+}
+
+.faq-list summary:hover {
+  color: var(--gold);
+}
+
+.faq-list details p {
+  max-width: 540px;
+  padding-bottom: 24px;
+}
+
+
+/* ==========================================================
+   Contact
+   ========================================================== */
+.cta {
+  background: var(--gold);
+}
+
+.cta-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+.cta .label,
+.cta .section-title,
+.cta .text {
+  color: var(--white);
+}
+
+
+/* ==========================================================
+   Footer
+   ========================================================== */
+.footer {
+  padding-top: var(--section-space);
+  background: var(--sand);
+  color: var(--text-main);
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1fr;
+  gap: 48px;
+  padding-bottom: 48px;
+}
+
+.footer .logo {
+  display: inline-block;
+  margin-bottom: 16px;
+  font-size: 28px;
+}
+
+.footer .text {
+  max-width: 360px;
+  font-size: 15px;
+  color: var(--text-body);
+}
+
+.social {
+  display: flex;
+  gap: 18px;
+  margin-top: 24px;
+}
+
+.social a {
+  color: var(--gold);
+  transition: color 0.2s;
+}
+
+.social a:hover {
+  color: var(--gold-dark);
+}
+
+.social svg {
+  width: 22px;
+  height: 22px;
+}
+
+.footer h3 {
+  margin-bottom: 20px;
+  font-family: "Inter", sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.footer li + li {
+  margin-top: 12px;
+}
+
+.footer li a:hover {
+  color: var(--gold);
+}
+
+.copyright {
+  padding: 24px 0;
+  font-size: 14px;
+  color: var(--text-body);
+  border-top: 1px solid #cfc9bc;
+}
+
+
+/* ==========================================================
+   Tablet
+   ========================================================== */
+@media (max-width: 1000px) {
+  .two-col {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+
+  .services-head {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .occasion-list {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .occasion {
+    flex: none;
+    height: 64px;
+    transition: height 0.4s ease;
+  }
+
+  .occasion.is-active {
+    height: 380px;
+  }
+
+  .occasion-name,
+  .occasion.is-active .occasion-name {
+    top: 16px;
+    left: 20px;
+    transform: none;
+    font-size: 22px;
+    writing-mode: horizontal-tb;
+  }
+
+  .occasion.is-active .occasion-name {
+    font-size: 28px;
+  }
+
+  .occasion-desc {
+    left: 20px;
+    right: 20px;
+    bottom: 22px;
+    font-size: 15px;
+  }
+
+  .about {
+    grid-template-columns: 1fr;
+    min-height: 0;
+  }
+
+  .about-photo {
+    height: 380px;
+  }
+
+  .about-copy {
+    max-width: none;
+    padding: 48px 40px;
+  }
+
+  .blog-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .footer-grid > :first-child {
+    grid-column: 1 / -1;
+  }
+}
+
+
+/* ==========================================================
+   Mobile
+   ========================================================== */
 @media (max-width: 768px) {
   :root {
     --nav-height: 64px;
+    --section-space: 48px;
+  }
+
+  .container {
+    padding: 0 20px;
   }
 
   .navbar {
@@ -134,7 +803,7 @@ ul {
   }
 
   .logo {
-    font-size: 18px;
+    font-size: 19px;
   }
 
   .nav-links {
@@ -142,22 +811,49 @@ ul {
   }
 
   .nav-links a {
-    font-size: 13px;
+    font-size: 12px;
+  }
+
+  .center .section-title,
+  .section-title.center {
+    margin-bottom: 24px;
+  }
+
+  .hero::before {
+    display: none;
   }
 
   .hero-bg {
-    height: 340px;
+    height: 320px;
     object-fit: cover;
     object-position: 20% bottom;
   }
 
-  .hero-inner {
+  .hero-text {
     position: static;
-    padding: 20px;
-    text-align: center;
+    padding: 32px 20px 40px;
+    background: var(--ivory);
   }
 
-  .hero-text h1 {
-    font-size: 30px;
+  .reaction-img {
+    height: 320px;
+  }
+
+  .about-copy {
+    padding: 48px 20px;
+  }
+
+  .blog-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .cta-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 32px;
+  }
+
+  .footer-grid {
+    gap: 32px;
   }
 }

@@ -3,25 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Magicnas</title>
+  <title>Magicnas | Professional Magician in Dubai</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Cormorant+Garamond:wght@400;500&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Inter:wght@400;500;600&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
+  <!-- Hero -->
   <header class="hero" id="home">
-
-    <!-- Navigation (sits in its own band above the photo) -->
     <nav class="navbar">
-      <a href="#home" class="logo">
-        <svg class="logo-crown" viewBox="0 0 24 16" aria-hidden="true">
-          <path d="M1 15 L3 3 L8 9 L12 1 L16 9 L21 3 L23 15 Z" fill="currentColor"/>
-        </svg>
-        <span>MAGICNAS</span>
-      </a>
-
+      <a href="#home" class="logo">MAGICNAS</a>
       <ul class="nav-links">
         <li><a href="#home">Home</a></li>
         <li><a href="#about">About</a></li>
@@ -31,17 +24,429 @@
       </ul>
     </nav>
 
-    <!-- Banner photo -->
-    <img class="hero-bg" src="images/magicnas-hero.png" alt="Magician holding colorful magic wands">
+    <img class="hero-bg" src="images/Magician.png" alt="Magician holding colorful magic wands">
 
-    <!-- Headline -->
-    <div class="hero-inner">
-      <div class="hero-text">
-        <h1>Where <span>Wonder</span> Meets Extraordinary Magic.</h1>
+    <div class="hero-text">
+      <p class="label">Professional Magician</p>
+      <h1>Where <span class="gold">Wonder</span> Meets Extraordinary Magic.</h1>
+      <p class="text">Magic, mentalism and shared laughter. For corporate stages and private celebrations.</p>
+      <div class="buttons">
+        <a href="#contact" class="btn btn-gold">Bring Magicnas to your event</a>
+        <a href="#gallery" class="btn btn-outline">Watch the event reel</a>
       </div>
     </div>
-
   </header>
+
+
+  <!-- Selected moments -->
+  <section class="section bg-ivory" id="gallery">
+    <div class="container two-col">
+
+      <div>
+        <img class="moments-img" id="momentImg" src="images/gallery_image_9.jpg" alt="Magicnas performing close-up magic">
+        <div class="moments-bar">
+          <p id="momentCaption">Close-up magic at a private dinner</p>
+          <div class="moments-nav">
+            <button type="button" id="momentPrev" aria-label="Previous">&lsaquo;</button>
+            <span><span id="momentCurrent">1</span> / 3</span>
+            <button type="button" id="momentNext" aria-label="Next">&rsaquo;</button>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <p class="label" id="momentTag">A private audience</p>
+        <h2 class="section-title">
+          <span id="momentLine1">A deck of cards.</span><br>
+          <span class="gold" id="momentLine2">A room full of wonder.</span>
+        </h2>
+        <p class="text" id="momentText">
+          An intimate performance for a small, curious crowd. The setting may be
+          grand. The magic still happens right there, in someone&rsquo;s hands.
+        </p>
+
+        <blockquote class="quote">
+          <p id="momentQuote">&ldquo;Client testimonial goes here. One or two lines about the performance.&rdquo;</p>
+          <cite id="momentCite">Client name</cite>
+        </blockquote>
+
+        <div class="buttons">
+          <a href="#about" class="btn btn-outline">More about Magicnas</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- The reaction -->
+  <section class="section reaction">
+    <div class="container center">
+      <p class="label">The method stays hidden.</p>
+      <h2 class="section-title">The reaction <span class="gold">is real.</span></h2>
+    </div>
+    <img class="reaction-img" src="images/nasar-portrait.jpeg" alt="A guest reacting with surprise during a Magicnas performance">
+  </section>
+
+
+  <!-- Services -->
+  <section class="section bg-ivory" id="services">
+    <div class="container">
+
+      <div class="services-head">
+        <h2 class="section-title">What are <span class="gold">you planning?</span></h2>
+        <p class="text">Five occasions. Different possibilities.<br>One very good decision.</p>
+      </div>
+
+      <div class="occasion-list">
+
+        <button type="button" class="occasion is-active">
+          <img src="images/magician-cutout.png" alt="">
+          <span class="occasion-name">Corporate events</span>
+          <span class="occasion-desc">
+            Give colleagues and clients a shared experience beyond the usual small talk.
+            Interactive magic, mentalism and clean humor for conferences, awards nights
+            and company dinners.
+          </span>
+        </button>
+
+        <button type="button" class="occasion">
+          <img src="images/gallery_image_2.jpg" alt="">
+          <span class="occasion-name">Private events</span>
+          <span class="occasion-desc">
+            Birthdays, anniversaries and milestone evenings, with close-up magic
+            that moves through the room and keeps every guest involved.
+          </span>
+        </button>
+
+        <button type="button" class="occasion">
+          <img src="images/gallery_image_7.jpg" alt="">
+          <span class="occasion-name">Live performances</span>
+          <span class="occasion-desc">
+            Table-to-table magic during the reception, so guests meet each other
+            and the couple gets a story worth retelling.
+          </span>
+        </button>
+
+        <button type="button" class="occasion">
+          <img src="images/gallery_image_3.jpg" alt="">
+          <span class="occasion-name">Holiday parties</span>
+          <span class="occasion-desc">
+            A festive show for teams and families that is easy to fit into
+            your evening and friendly for every age.
+          </span>
+        </button>
+
+        <button type="button" class="occasion">
+          <img src="images/gallery_image_4.jpg" alt="">
+          <span class="occasion-name">Other occasions</span>
+          <span class="occasion-desc">
+            A host who keeps the program moving, welcomes your speakers
+            and adds a moment of wonder between sessions.
+          </span>
+        </button>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- About -->
+  <section class="about" id="about">
+    <div class="about-photo">
+      <img src="images/gallery_image_4.jpg" alt="Magicnas on stage">
+    </div>
+
+    <div class="about-copy">
+      <p class="label">The person behind the magic</p>
+      <h2 class="section-title">
+        A performer.<br>
+        A creator.<br>
+        <span class="gold">Always curious.</span>
+      </h2>
+      <p class="text">
+        Before something impossible can happen in front of you, somebody has
+        to work out how to make it happen at all.
+      </p>
+      <p class="text">
+        Magicnas builds every performance around your event, from the first
+        idea to the final reveal. The result is a show shaped by the person
+        who creates it.
+      </p>
+      <div class="buttons">
+        <a href="#contact" class="btn btn-gold">Book your event</a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Blog -->
+  <section class="section bg-ivory" id="blog">
+    <div class="container">
+      <h2 class="section-title center">Professional <span class="gold">Magician</span> in Dubai</h2>
+
+      <div class="blog-grid">
+
+        <article class="blog-card">
+          <a href="https://yourwebsite.com/blog/post-one">
+            <img src="images/gallery_image_1.jpg" alt="Guests enjoying close-up magic" loading="lazy">
+            <div class="blog-body">
+              <h3>25+ Years of Professional Experience</h3>
+              <p>
+                Magicnas has worked professionally as a magician for over two decades,
+                performing at corporate and private events across Dubai and the Gulf.
+              </p>
+              <span class="read-more">Read article</span>
+            </div>
+          </a>
+        </article>
+
+        <article class="blog-card">
+          <a href="https://yourwebsite.com/blog/post-two">
+            <img src="images/gallery_image_2.jpg" alt="Stage magic and mentalism" loading="lazy">
+            <div class="blog-body">
+              <h3>Roaming, Stage &amp; Mentalism</h3>
+              <p>
+                Roaming magic works well during cocktails and networking. Stage magic and
+                mentalism suit seated audiences, conferences and gala dinners.
+              </p>
+              <span class="read-more">Read article</span>
+            </div>
+          </a>
+        </article>
+
+        <article class="blog-card">
+          <a href="https://yourwebsite.com/blog/post-three">
+            <img src="images/gallery_image_9.jpg" alt="Magic at a trade show" loading="lazy">
+            <div class="blog-body">
+              <h3>Trade Shows &amp; Exhibitions</h3>
+              <p>
+                Short routines attract visitors, start conversations and give your sales
+                team a natural opening to speak with prospects.
+              </p>
+              <span class="read-more">Read article</span>
+            </div>
+          </a>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Testimonial -->
+  <section class="section testimonial">
+    <div class="container center">
+      <p class="label">From the people who book him</p>
+      <blockquote>
+        <p>&ldquo;Magicnas is AMAZING! Our attendees are still raving about his show.&rdquo;</p>
+        <cite>Client Name</cite>
+      </blockquote>
+    </div>
+  </section>
+
+
+  <!-- FAQ -->
+  <section class="section bg-ivory" id="faq">
+    <div class="container two-col faq">
+
+      <div>
+        <p class="label">A few good questions</p>
+        <h2 class="section-title">
+          Wonder about the magic.<br>
+          <span class="gold">Be clear on the plan.</span>
+        </h2>
+      </div>
+
+      <div class="faq-list">
+
+        <details name="faq">
+          <summary>How does booking work?</summary>
+          <p>
+            Send a short message with your date, venue and type of event. You will
+            receive a reply with ideas and a quote, and the date is secured once
+            the booking is confirmed.
+          </p>
+        </details>
+
+        <details name="faq">
+          <summary>Where does Magicnas perform?</summary>
+          <p>
+            Across Dubai and the wider Gulf region, at hotels, private homes,
+            exhibition halls and corporate venues.
+          </p>
+        </details>
+
+        <details name="faq">
+          <summary>Can we see a performance first?</summary>
+          <p>
+            Yes. Watch the event reel on this page, and ask if you would like to
+            see footage from a similar event to yours.
+          </p>
+        </details>
+
+        <details name="faq">
+          <summary>What about show length and technical needs?</summary>
+          <p>
+            Roaming sets and stage shows can be shaped to fit your schedule.
+            Technical needs are minimal, and any requirements are confirmed with
+            you well before the event.
+          </p>
+        </details>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Contact -->
+  <section class="section cta" id="contact">
+    <div class="container cta-inner">
+      <div>
+        <p class="label">The next great room could be yours</p>
+        <h2 class="section-title">Let&rsquo;s give them a story.</h2>
+        <p class="text">
+          Tell Magicnas the date, the place and the people.
+          Find the right kind of impossible together.
+        </p>
+      </div>
+      <a href="mailto:hello@yourwebsite.com" class="btn btn-white">Let&rsquo;s talk</a>
+    </div>
+  </section>
+
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+
+      <div class="footer-grid">
+
+        <div>
+          <a href="#home" class="logo">MAGICNAS</a>
+          <p class="text">
+            Professional magic for private parties, corporate events and live
+            stage shows. Unforgettable moments of mystery, amazement and joy.
+          </p>
+          <div class="social">
+            <a href="#" aria-label="Facebook">
+              <svg viewBox="0 0 24 24"><path fill="currentColor" d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.3v7A10 10 0 0 0 22 12z"/></svg>
+            </a>
+            <a href="#" aria-label="Twitter">
+              <svg viewBox="0 0 24 24"><path fill="currentColor" d="M22 5.9c-.7.3-1.5.5-2.4.6.9-.5 1.5-1.3 1.8-2.3-.8.5-1.7.8-2.6 1a4.1 4.1 0 0 0-7 3.7A11.6 11.6 0 0 1 3.4 4.6a4.1 4.1 0 0 0 1.3 5.5c-.7 0-1.3-.2-1.9-.5 0 2 1.4 3.7 3.3 4.1-.6.2-1.2.2-1.9.1.5 1.6 2 2.8 3.8 2.8A8.3 8.3 0 0 1 2 18.3 11.6 11.6 0 0 0 8.3 20c7.5 0 11.7-6.3 11.7-11.7v-.5c.8-.6 1.5-1.3 2-2z"/></svg>
+            </a>
+            <a href="#" aria-label="YouTube">
+              <svg viewBox="0 0 24 24"><path fill="currentColor" d="M21.6 7.2a2.5 2.5 0 0 0-1.8-1.8C18.2 5 12 5 12 5s-6.2 0-7.8.4A2.5 2.5 0 0 0 2.4 7.2C2 8.8 2 12 2 12s0 3.2.4 4.8a2.5 2.5 0 0 0 1.8 1.8C5.8 19 12 19 12 19s6.2 0 7.8-.4a2.5 2.5 0 0 0 1.8-1.8c.4-1.6.4-4.8.4-4.8s0-3.2-.4-4.8zM10 15V9l5.2 3L10 15z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div>
+          <h3>Your occasion</h3>
+          <ul>
+            <li><a href="#services">Corporate events</a></li>
+            <li><a href="#services">Private events</a></li>
+            <li><a href="#services">Live performances</a></li>
+            <li><a href="#services">Holiday parties</a></li>
+            <li><a href="#services">Other occasions</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3>Quick links</h3>
+          <ul>
+            <li><a href="#home">Homepage</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#contact">Contact us</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3>Location &amp; details</h3>
+          <ul>
+            <li>UAE</li>
+            <li><a href="tel:+9715559646461">+971 5559646461</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <p class="copyright">&copy; 2026 Nasar Rahman. All rights reserved.</p>
+    </div>
+  </footer>
+
+
+  <script>
+    // Selected moments slider
+    var moments = [
+      {
+        img: "images/gallery_image_9.jpg",
+        caption: "Close-up magic at a private dinner",
+        tag: "A private audience",
+        line1: "A deck of cards.",
+        line2: "A room full of wonder.",
+        text: "An intimate performance for a small, curious crowd. The setting may be grand. The magic still happens right there, in someone\u2019s hands.",
+        quote: "\u201CClient testimonial goes here. One or two lines about the performance.\u201D",
+        cite: "Client name"
+      },
+      {
+        img: "images/gallery_image_6.jpg",
+        caption: "Stage show at a corporate event",
+        tag: "A corporate evening",
+        line1: "One stage.",
+        line2: "Two hundred guests, wondering.",
+        text: "Magic and mentalism built around your event, your guests and your schedule, with plenty of room for shared laughter.",
+        quote: "\u201CClient testimonial goes here. One or two lines about the performance.\u201D",
+        cite: "Client name, Company"
+      },
+      {
+        img: "images/gallery_image_8.jpg",
+        caption: "Wedding reception, table to table",
+        tag: "A celebration",
+        line1: "Table to table.",
+        line2: "Smile to smile.",
+        text: "Close-up magic that moves through the room, so every guest gets a moment that belongs only to them.",
+        quote: "\u201CClient testimonial goes here. One or two lines about the performance.\u201D",
+        cite: "Client name"
+      }
+    ];
+
+    var current = 0;
+
+    function byId(id) {
+      return document.getElementById(id);
+    }
+
+    function showMoment(i) {
+      current = (i + moments.length) % moments.length;
+      var m = moments[current];
+
+      byId("momentImg").src = m.img;
+      byId("momentCaption").textContent = m.caption;
+      byId("momentCurrent").textContent = current + 1;
+      byId("momentTag").textContent = m.tag;
+      byId("momentLine1").textContent = m.line1;
+      byId("momentLine2").textContent = m.line2;
+      byId("momentText").textContent = m.text;
+      byId("momentQuote").textContent = m.quote;
+      byId("momentCite").textContent = m.cite;
+    }
+
+    byId("momentPrev").addEventListener("click", function () { showMoment(current - 1); });
+    byId("momentNext").addEventListener("click", function () { showMoment(current + 1); });
+
+
+    // Services accordion
+    var panels = document.querySelectorAll(".occasion");
+
+    panels.forEach(function (panel) {
+      panel.addEventListener("click", function () {
+        panels.forEach(function (p) { p.classList.remove("is-active"); });
+        panel.classList.add("is-active");
+      });
+    });
+  </script>
 
 </body>
 </html>
