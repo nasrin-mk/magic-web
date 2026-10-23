@@ -91,67 +91,116 @@
     <img class="reaction-img" src="images/nasar-portrait.jpeg" alt="A guest reacting with surprise during a Magicnas performance">
   </section>
 
+<!-- Services -->
+<section class="section bg-white" id="services">
+  <div class="container">
 
-  <!-- Services -->
-  <section class="section bg-white" id="services">
-    <div class="container">
-
-      <div class="services-head">
-        <h2 class="section-title">What are <span class="gold">you planning?</span></h2>
-        <p class="text">Five occasions. Different possibilities.<br>One very good decision.</p>
-      </div>
-
-      <div class="occasion-list">
-
-        <button type="button" class="occasion is-active">
-          <img src="images/magician-cutout.png" alt="">
-          <span class="occasion-name">Corporate events</span>
-          <span class="occasion-desc">
-            Give colleagues and clients a shared experience beyond the usual small talk.
-            Interactive magic, mentalism and clean humor for conferences, awards nights
-            and company dinners.
-          </span>
-        </button>
-
-        <button type="button" class="occasion">
-          <img src="images/gallery_image_2.jpg" alt="">
-          <span class="occasion-name">Private events</span>
-          <span class="occasion-desc">
-            Birthdays, anniversaries and milestone evenings, with close-up magic
-            that moves through the room and keeps every guest involved.
-          </span>
-        </button>
-
-        <button type="button" class="occasion">
-          <img src="images/gallery_image_7.jpg" alt="">
-          <span class="occasion-name">Live performances</span>
-          <span class="occasion-desc">
-            Table-to-table magic during the reception, so guests meet each other
-            and the couple gets a story worth retelling.
-          </span>
-        </button>
-
-        <button type="button" class="occasion">
-          <img src="images/gallery_image_3.jpg" alt="">
-          <span class="occasion-name">Holiday parties</span>
-          <span class="occasion-desc">
-            A festive show for teams and families that is easy to fit into
-            your evening and friendly for every age.
-          </span>
-        </button>
-
-        <button type="button" class="occasion">
-          <img src="images/gallery_image_4.jpg" alt="">
-          <span class="occasion-name">Other occasions</span>
-          <span class="occasion-desc">
-            A host who keeps the program moving, welcomes your speakers
-            and adds a moment of wonder between sessions.
-          </span>
-        </button>
-
-      </div>
+    <div class="services-head">
+      <h2 class="section-title">What are <span class="gold">you planning?</span></h2>
+      <p class="text">Five occasions. Different possibilities.<br>One very good decision.</p>
     </div>
-  </section>
+
+    <div class="occasion-list">
+
+      <button type="button" class="occasion is-active"
+        data-service="corporate">
+        <img src="images/magician-cutout.png" alt="">
+        <span class="occasion-name">Corporate events</span>
+        <span class="occasion-desc">
+          Give colleagues and clients a shared experience beyond the usual small talk.
+          Interactive magic, mentalism and clean humor for conferences, awards nights
+          and company dinners.
+        </span>
+      </button>
+
+      <button type="button" class="occasion"
+        data-service="private">
+        <img src="images/gallery_image_2.jpg" alt="">
+        <span class="occasion-name">Private events</span>
+        <span class="occasion-desc">
+          Birthdays, anniversaries and milestone evenings, with close-up magic
+          that moves through the room and keeps every guest involved.
+        </span>
+      </button>
+
+      <button type="button" class="occasion"
+        data-service="live">
+        <img src="images/gallery_image_7.jpg" alt="">
+        <span class="occasion-name">Live performances</span>
+        <span class="occasion-desc">
+          Table-to-table magic during the reception, so guests meet each other
+          and the couple gets a story worth retelling.
+        </span>
+      </button>
+
+      <button type="button" class="occasion"
+        data-service="holiday">
+        <img src="images/gallery_image_3.jpg" alt="">
+        <span class="occasion-name">Holiday parties</span>
+        <span class="occasion-desc">
+          A festive show for teams and families that is easy to fit into
+          your evening and friendly for every age.
+        </span>
+      </button>
+
+      <button type="button" class="occasion"
+        data-service="other">
+        <img src="images/gallery_image_4.jpg" alt="">
+        <span class="occasion-name">Other occasions</span>
+        <span class="occasion-desc">
+          A host who keeps the program moving, welcomes your speakers
+          and adds a moment of wonder between sessions.
+        </span>
+      </button>
+
+    </div>
+  </div>
+</section>
+
+<!-- Service Details Popup -->
+<div class="service-popup" id="servicePopup" aria-hidden="true">
+
+  <div class="service-popup-overlay" id="servicePopupOverlay"></div>
+
+  <div class="service-popup-box"
+       role="dialog"
+       aria-modal="true"
+       aria-labelledby="servicePopupTitle">
+
+    <button type="button"
+            class="service-popup-close"
+            id="servicePopupClose"
+            aria-label="Close">
+      &times;
+    </button>
+
+    <div class="service-popup-image-wrap">
+      <img id="servicePopupImage" src="" alt="">
+    </div>
+
+    <div class="service-popup-body">
+
+      <span class="service-popup-label" id="servicePopupLabel">
+        Service
+      </span>
+
+      <h3 id="servicePopupTitle"></h3>
+
+      <p id="servicePopupDescription"></p>
+
+      <div class="service-popup-features" id="servicePopupFeatures"></div>
+
+      <a id="servicePopupWhatsapp"
+         class="service-popup-whatsapp"
+         href="#"
+         target="_blank"
+         rel="noopener">
+        <span>WhatsApp to enquire</span>
+      </a>
+
+    </div>
+  </div>
+</div>
 
 
   <!-- About -->
@@ -437,110 +486,367 @@
       <p class="copyright">&copy; 2026 Nasar Rahman. All rights reserved.</p>
     </div>
   </footer>
-
-
   <script>
-    // Selected moments slider
-    var moments = [
-      {
-        img: "images/gallery_image_9.jpg",
-        caption: "Close-up magic at a private dinner",
-        tag: "A private audience",
-        line1: "A deck of cards.",
-        line2: "A room full of wonder.",
-        text: "An intimate performance for a small, curious crowd. The setting may be grand. The magic still happens right there, in someone’s hands.",
-        quote: "“Client testimonial goes here. One or two lines about the performance.”",
-        cite: "Client name"
+  // ==========================================
+  // SELECTED MOMENTS SLIDER
+  // ==========================================
+
+  var moments = [
+    {
+      img: "images/gallery_image_9.jpg",
+      caption: "Close-up magic at a private dinner",
+      tag: "A private audience",
+      line1: "A deck of cards.",
+      line2: "A room full of wonder.",
+      text: "An intimate performance for a small, curious crowd. The setting may be grand. The magic still happens right there, in someone’s hands.",
+      quote: "“Client testimonial goes here. One or two lines about the performance.”",
+      cite: "Client name"
+    },
+    {
+      img: "images/gallery_image_6.jpg",
+      caption: "Stage show at a corporate event",
+      tag: "A corporate evening",
+      line1: "One stage.",
+      line2: "Two hundred guests, wondering.",
+      text: "Magic and mentalism built around your event, your guests and your schedule, with plenty of room for shared laughter.",
+      quote: "“Client testimonial goes here. One or two lines about the performance.”",
+      cite: "Client name, Company"
+    },
+    {
+      img: "images/gallery_image_8.jpg",
+      caption: "Wedding reception, table to table",
+      tag: "A celebration",
+      line1: "Table to table.",
+      line2: "Smile to smile.",
+      text: "Close-up magic that moves through the room, so every guest gets a moment that belongs only to them.",
+      quote: "“Client testimonial goes here. One or two lines about the performance.”",
+      cite: "Client name"
+    }
+  ];
+
+  var current = 0;
+
+  function byId(id) {
+    return document.getElementById(id);
+  }
+
+  function showMoment(i) {
+    current = (i + moments.length) % moments.length;
+
+    var m = moments[current];
+
+    byId("momentImg").src = m.img;
+    byId("momentCaption").textContent = m.caption;
+    byId("momentCurrent").textContent = current + 1;
+    byId("momentTag").textContent = m.tag;
+    byId("momentLine1").textContent = m.line1;
+    byId("momentLine2").textContent = m.line2;
+    byId("momentText").textContent = m.text;
+    byId("momentQuote").textContent = m.quote;
+    byId("momentCite").textContent = m.cite;
+  }
+
+  if (byId("momentPrev") && byId("momentNext")) {
+    byId("momentPrev").addEventListener("click", function () {
+      showMoment(current - 1);
+    });
+
+    byId("momentNext").addEventListener("click", function () {
+      showMoment(current + 1);
+    });
+  }
+
+
+  // ==========================================
+  // YOUTUBE VIDEOS
+  // Show thumbnail and open video on YouTube
+  // ==========================================
+
+  document.querySelectorAll("[data-youtube]").forEach(function (box) {
+    var link = box.getAttribute("data-youtube") || "";
+
+    var match = link.match(
+      /(?:youtu\.be\/|v=|embed\/|shorts\/|live\/)([A-Za-z0-9_-]{11})/
+    );
+
+    if (!match) return;
+
+    var id = match[1];
+    var title = box.getAttribute("data-title") || "YouTube video";
+
+    box.href = "https://www.youtube.com/watch?v=" + id;
+    box.target = "_blank";
+    box.rel = "noopener noreferrer";
+    box.setAttribute("aria-label", "Watch " + title + " on YouTube");
+
+    // Prevent adding duplicate thumbnails if this code runs again.
+    if (box.querySelector("img")) return;
+
+    var img = document.createElement("img");
+    img.src = "https://i.ytimg.com/vi/" + id + "/hqdefault.jpg";
+    img.alt = title;
+    img.loading = "lazy";
+
+    var play = document.createElement("span");
+    play.className = "video-play";
+
+    var badge = document.createElement("span");
+    badge.className = "video-badge";
+    badge.textContent = "YouTube ↗";
+
+    box.appendChild(img);
+    box.appendChild(play);
+    box.appendChild(badge);
+  });
+
+
+  // ==========================================
+  // SERVICE POPUPS AND ACCORDION
+  // First click: open accordion
+  // Second click on same section: open popup
+  // ==========================================
+
+  document.addEventListener("DOMContentLoaded", function () {
+
+    var serviceCards = document.querySelectorAll(".occasion");
+
+    var popup = byId("servicePopup");
+    var popupOverlay = byId("servicePopupOverlay");
+    var popupClose = byId("servicePopupClose");
+
+    var popupImage = byId("servicePopupImage");
+    var popupLabel = byId("servicePopupLabel");
+    var popupTitle = byId("servicePopupTitle");
+    var popupDescription = byId("servicePopupDescription");
+    var popupFeatures = byId("servicePopupFeatures");
+    var popupWhatsapp = byId("servicePopupWhatsapp");
+
+    // Stop safely if the popup HTML is missing.
+    if (
+      !popup ||
+      !popupOverlay ||
+      !popupClose ||
+      !popupImage ||
+      !popupLabel ||
+      !popupTitle ||
+      !popupDescription ||
+      !popupFeatures ||
+      !popupWhatsapp
+    ) {
+      console.error(
+        "Service popup elements are missing. Check the service popup HTML IDs."
+      );
+      return;
+    }
+
+
+    // ------------------------------------------
+    // INDIVIDUAL SERVICE CONTENT
+    // ------------------------------------------
+
+    var services = {
+
+      corporate: {
+        label: "Corporate Events",
+        title: "Magic that brings people together",
+        image: "images/magician-cutout.png",
+        description:
+          "Give colleagues and clients a shared experience beyond the usual small talk. Interactive magic, mentalism and clean humor designed for professional events.",
+        features: [
+          "Interactive close-up magic",
+          "Mentalism and audience participation",
+          "Suitable for conferences and company dinners",
+          "Professional and clean presentation"
+        ]
       },
-      {
-        img: "images/gallery_image_6.jpg",
-        caption: "Stage show at a corporate event",
-        tag: "A corporate evening",
-        line1: "One stage.",
-        line2: "Two hundred guests, wondering.",
-        text: "Magic and mentalism built around your event, your guests and your schedule, with plenty of room for shared laughter.",
-        quote: "“Client testimonial goes here. One or two lines about the performance.”",
-        cite: "Client name, Company"
+
+      private: {
+        label: "Private Events",
+        title: "Make your celebration unforgettable",
+        image: "images/gallery_image_2.jpg",
+        description:
+          "Birthdays, anniversaries and milestone evenings become more memorable with close-up magic that moves naturally through the room.",
+        features: [
+          "Close-up magic for guests",
+          "Interactive performances",
+          "Perfect for birthdays and anniversaries",
+          "Guests become part of the experience"
+        ]
       },
-      {
-        img: "images/gallery_image_8.jpg",
-        caption: "Wedding reception, table to table",
-        tag: "A celebration",
-        line1: "Table to table.",
-        line2: "Smile to smile.",
-        text: "Close-up magic that moves through the room, so every guest gets a moment that belongs only to them.",
-        quote: "“Client testimonial goes here. One or two lines about the performance.”",
-        cite: "Client name"
+
+      live: {
+        label: "Live Performances",
+        title: "A performance your guests will remember",
+        image: "images/gallery_image_7.jpg",
+        description:
+          "Bring live magic to your event with an engaging performance designed to create memorable moments for your audience.",
+        features: [
+          "Live magic performance",
+          "Audience interaction",
+          "Engaging and visual entertainment",
+          "Suitable for receptions and special events"
+        ]
+      },
+
+      holiday: {
+        label: "Holiday Parties",
+        title: "Add some magic to the celebration",
+        image: "images/gallery_image_3.jpg",
+        description:
+          "A festive magic experience for teams and families that fits naturally into your evening and keeps guests entertained.",
+        features: [
+          "Festive interactive magic",
+          "Suitable for teams and families",
+          "Friendly for different age groups",
+          "Easy to fit into your event schedule"
+        ]
+      },
+
+      other: {
+        label: "Other Occasions",
+        title: "Let's create something magical",
+        image: "images/gallery_image_4.jpg",
+        description:
+          "Planning something different? Get in touch and we can create a magic experience that fits your event.",
+        features: [
+          "Flexible performance options",
+          "Interactive entertainment",
+          "Can fit different event formats",
+          "Custom arrangements available"
+        ]
       }
-    ];
 
-    var current = 0;
-
-    function byId(id) {
-      return document.getElementById(id);
-    }
-
-    function showMoment(i) {
-      current = (i + moments.length) % moments.length;
-      var m = moments[current];
-
-      byId("momentImg").src = m.img;
-      byId("momentCaption").textContent = m.caption;
-      byId("momentCurrent").textContent = current + 1;
-      byId("momentTag").textContent = m.tag;
-      byId("momentLine1").textContent = m.line1;
-      byId("momentLine2").textContent = m.line2;
-      byId("momentText").textContent = m.text;
-      byId("momentQuote").textContent = m.quote;
-      byId("momentCite").textContent = m.cite;
-    }
-
-    byId("momentPrev").addEventListener("click", function () { showMoment(current - 1); });
-    byId("momentNext").addEventListener("click", function () { showMoment(current + 1); });
+    };
 
 
-    // Services accordion
-    var panels = document.querySelectorAll(".occasion");
+    // ------------------------------------------
+    // OPEN THE SELECTED SERVICE POPUP
+    // ------------------------------------------
 
-    panels.forEach(function (panel) {
-      panel.addEventListener("click", function () {
-        panels.forEach(function (p) { p.classList.remove("is-active"); });
-        panel.classList.add("is-active");
+    function openServicePopup(serviceKey) {
+
+      var service = services[serviceKey];
+
+      if (!service) return;
+
+      popupImage.src = service.image;
+      popupImage.alt = service.title;
+
+      popupLabel.textContent = service.label;
+      popupTitle.textContent = service.title;
+      popupDescription.textContent = service.description;
+
+      // Clear the previous service's features.
+      popupFeatures.innerHTML = "";
+
+      service.features.forEach(function (feature) {
+        var item = document.createElement("div");
+
+        item.className = "service-popup-feature";
+        item.textContent = feature;
+
+        popupFeatures.appendChild(item);
       });
+
+      // WhatsApp number: country code + number, digits only.
+      // Confirm this is the correct business number.
+      var whatsappNumber = "9715559646461";
+
+      var message =
+        "Hi, I would like to enquire about " +
+        service.label +
+        ".";
+
+      popupWhatsapp.href =
+        "https://wa.me/" +
+        whatsappNumber +
+        "?text=" +
+        encodeURIComponent(message);
+
+      popup.classList.add("is-open");
+      popup.setAttribute("aria-hidden", "false");
+
+      // Prevent background scrolling while the popup is open.
+      popup.dataset.previousOverflow = document.body.style.overflow;
+      document.body.style.overflow = "hidden";
+    }
+
+
+    // ------------------------------------------
+    // CLOSE THE SERVICE POPUP
+    // ------------------------------------------
+
+    function closeServicePopup() {
+
+      popup.classList.remove("is-open");
+      popup.setAttribute("aria-hidden", "true");
+
+      document.body.style.overflow =
+        popup.dataset.previousOverflow || "";
+    }
+
+
+    // ------------------------------------------
+    // ACCORDION CLICK BEHAVIOR
+    // ------------------------------------------
+
+    // Tracks which section was clicked most recently.
+    // This also works when the first section is active by default.
+    var lastClickedService = null;
+
+    serviceCards.forEach(function (card) {
+
+      card.addEventListener("click", function () {
+
+        var isSameSection = lastClickedService === card;
+
+        // FIRST CLICK on a section:
+        // Activate the accordion and do not open the popup.
+        if (!isSameSection) {
+
+          serviceCards.forEach(function (item) {
+            item.classList.remove("is-active");
+          });
+
+          card.classList.add("is-active");
+          lastClickedService = card;
+
+          return;
+        }
+
+        // SECOND CLICK on the same section:
+        // Open that section's individual popup.
+        var serviceKey = card.getAttribute("data-service");
+
+        openServicePopup(serviceKey);
+
+      });
+
     });
 
 
-    // YouTube videos: show the thumbnail, open the video on YouTube
-    document.querySelectorAll("[data-youtube]").forEach(function (box) {
-      var link = box.getAttribute("data-youtube");
-      var match = link.match(/(?:youtu\.be\/|v=|embed\/|shorts\/|live\/)([A-Za-z0-9_-]{11})/);
-      if (!match) return;
+    // ------------------------------------------
+    // POPUP CLOSE CONTROLS
+    // ------------------------------------------
 
-      var id = match[1];
-      var title = box.getAttribute("data-title") || "YouTube video";
+    popupClose.addEventListener("click", closeServicePopup);
 
-      box.href = "https://www.youtube.com/watch?v=" + id;
-      box.target = "_blank";
-      box.rel = "noopener";
-      box.setAttribute("aria-label", "Watch " + title + " on YouTube");
+    popupOverlay.addEventListener("click", closeServicePopup);
 
-      var img = document.createElement("img");
-      img.src = "https://i.ytimg.com/vi/" + id + "/hqdefault.jpg";
-      img.alt = title;
-      img.loading = "lazy";
+    document.addEventListener("keydown", function (event) {
 
-      var play = document.createElement("span");
-      play.className = "video-play";
+      if (
+        event.key === "Escape" &&
+        popup.classList.contains("is-open")
+      ) {
+        closeServicePopup();
+      }
 
-      var badge = document.createElement("span");
-      badge.className = "video-badge";
-      badge.textContent = "YouTube ↗";
-
-      box.appendChild(img);
-      box.appendChild(play);
-      box.appendChild(badge);
     });
-  </script>
+
+  });
+
+</script>
 
 </body>
 </html>
