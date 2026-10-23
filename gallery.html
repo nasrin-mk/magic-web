@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gallery | Magicnas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/gallery.css">
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="page-hero">
+    <nav class="navbar">
+      <a href="index.html" class="logo">MAGICNAS</a>
+      <ul class="nav-links">
+        <li><a href="index.html#home">Home</a></li>
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="index.html#services">Services</a></li>
+        <li><a href="gallery.html" class="active">Gallery</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+    </nav>
+
+    <div class="container page-hero-inner">
+      <div>
+        <p class="label">Gallery</p>
+        <h1>The stage.<br>The smiles.<br><span class="gold">The wonder.</span></h1>
+      </div>
+      <p class="text">Real moments from live shows, private events and corporate performances.</p>
+    </div>
+  </header>
+
+
+  <!-- Gallery -->
+  <section class="section" id="gallery">
+    <div class="container">
+
+      <div class="filters">
+        <button class="active" data-filter="all">All moments</button>
+        <button data-filter="stage">On stage</button>
+        <button data-filter="closeup">Close-up</button>
+        <button data-filter="events">Events</button>
+        <button data-filter="video">Video clips</button>
+      </div>
+
+      <div class="gallery-grid">
+
+        <div class="gallery-item" data-title="Card Magic" data-type="closeup">
+          <div class="gallery-img">
+            <img src="images/gallery_image_1.jpg" alt="Magician performing floating card trick">
+          </div>
+          <h3>Card Magic</h3>
+          <p>Close-up</p>
+        </div>
+
+        <div class="gallery-item" data-title="Corporate Interaction" data-type="events closeup">
+          <div class="gallery-img">
+            <img src="images/gallery_image_2.jpg" alt="Magician performing table trick for audience">
+          </div>
+          <h3>Corporate Interaction</h3>
+          <p>Corporate event</p>
+        </div>
+
+        <div class="gallery-item" data-title="Dove Production" data-type="stage video">
+          <div class="gallery-img">
+            <video autoplay muted loop playsinline poster="images/gallery-dove.jpg">
+              <source src="videos/gallery_video_1.mp4" type="video/mp4">
+            </video>
+            <span class="badge">&#9654; Live clip</span>
+          </div>
+          <h3>Dove Production</h3>
+          <p>On stage</p>
+        </div>
+
+        <div class="gallery-item" data-title="Audience Wonder" data-type="events">
+          <div class="gallery-img">
+            <img src="images/gallery_image_3.jpg" alt="Interactive performance with child volunteer">
+          </div>
+          <h3>Audience Wonder</h3>
+          <p>Family event</p>
+        </div>
+
+        <div class="gallery-item" data-title="Stage Illusions" data-type="stage video">
+          <div class="gallery-img">
+            <video autoplay muted loop playsinline poster="images/gallery-wands.jpg">
+              <source src="videos/gallery_video_2.mp4" type="video/mp4">
+            </video>
+            <span class="badge">&#9654; Stage clip</span>
+          </div>
+          <h3>Stage Illusions</h3>
+          <p>On stage</p>
+        </div>
+
+        <div class="gallery-item" data-title="Chinese Linking Rings" data-type="stage">
+          <div class="gallery-img">
+            <img src="images/gallery_image_4.jpg" alt="Linking rings with smoke atmosphere">
+          </div>
+          <h3>Chinese Linking Rings</h3>
+          <p>On stage</p>
+        </div>
+
+        <div class="gallery-item" data-title="Fire &amp; Flame Magic" data-type="events video">
+          <div class="gallery-img">
+            <video autoplay muted loop playsinline poster="images/gallery-fire.jpg">
+              <source src="videos/gallery_video_3.mp4" type="video/mp4">
+            </video>
+            <span class="badge">&#9654; Live fire</span>
+          </div>
+          <h3>Fire &amp; Flame Magic</h3>
+          <p>Event</p>
+        </div>
+
+        <div class="gallery-item" data-title="Ring Mysteries" data-type="stage">
+          <div class="gallery-img">
+            <img src="images/gallery_image_5.jpg" alt="Magician holding three linked metal rings">
+          </div>
+          <h3>Ring Mysteries</h3>
+          <p>On stage</p>
+        </div>
+
+        <div class="gallery-item" data-title="Youth Smiles &amp; Wonders" data-type="events">
+          <div class="gallery-img">
+            <img src="images/gallery_image_7.jpg" alt="Magician performing interactive trick with youth volunteer">
+          </div>
+          <h3>Youth Smiles &amp; Wonders</h3>
+          <p>Family event</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Contact -->
+  <section class="section cta" id="contact">
+    <div class="container cta-inner">
+      <div>
+        <p class="label">Your event, your guests</p>
+        <h2 class="section-title">Want moments like these?</h2>
+        <p class="text">
+          Tell Magicnas the date, the place and the people.
+          Find the right kind of impossible together.
+        </p>
+      </div>
+      <a href="mailto:hello@yourwebsite.com" class="btn btn-white">Let&rsquo;s talk</a>
+    </div>
+  </section>
+
+
+  <!-- Popup for photos and videos -->
+  <div class="modal" id="modal">
+    <button class="modal-close" id="modalClose" aria-label="Close">&times;</button>
+    <div class="modal-box">
+      <div class="modal-media" id="modalMedia"></div>
+      <p class="modal-title" id="modalTitle"></p>
+    </div>
+  </div>
+
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+
+      <div class="footer-grid">
+
+        <div>
+          <a href="index.html" class="logo">MAGICNAS</a>
+          <p class="text">
+            Professional magic for private parties, corporate events and live
+            stage shows. Unforgettable moments of mystery, amazement and joy.
+          </p>
+          <div class="social">
+            <a href="#" aria-label="Facebook">
+              <svg viewBox="0 0 24 24"><path fill="currentColor" d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.3v7A10 10 0 0 0 22 12z"/></svg>
+            </a>
+            <a href="#" aria-label="Twitter">
+              <svg viewBox="0 0 24 24"><path fill="currentColor" d="M22 5.9c-.7.3-1.5.5-2.4.6.9-.5 1.5-1.3 1.8-2.3-.8.5-1.7.8-2.6 1a4.1 4.1 0 0 0-7 3.7A11.6 11.6 0 0 1 3.4 4.6a4.1 4.1 0 0 0 1.3 5.5c-.7 0-1.3-.2-1.9-.5 0 2 1.4 3.7 3.3 4.1-.6.2-1.2.2-1.9.1.5 1.6 2 2.8 3.8 2.8A8.3 8.3 0 0 1 2 18.3 11.6 11.6 0 0 0 8.3 20c7.5 0 11.7-6.3 11.7-11.7v-.5c.8-.6 1.5-1.3 2-2z"/></svg>
+            </a>
+            <a href="#" aria-label="YouTube">
+              <svg viewBox="0 0 24 24"><path fill="currentColor" d="M21.6 7.2a2.5 2.5 0 0 0-1.8-1.8C18.2 5 12 5 12 5s-6.2 0-7.8.4A2.5 2.5 0 0 0 2.4 7.2C2 8.8 2 12 2 12s0 3.2.4 4.8a2.5 2.5 0 0 0 1.8 1.8C5.8 19 12 19 12 19s6.2 0 7.8-.4a2.5 2.5 0 0 0 1.8-1.8c.4-1.6.4-4.8.4-4.8s0-3.2-.4-4.8zM10 15V9l5.2 3L10 15z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div>
+          <h3>Your occasion</h3>
+          <ul>
+            <li><a href="index.html#services">Corporate events</a></li>
+            <li><a href="index.html#services">Private events</a></li>
+            <li><a href="index.html#services">Live performances</a></li>
+            <li><a href="index.html#services">Holiday parties</a></li>
+            <li><a href="index.html#services">Other occasions</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3>Quick links</h3>
+          <ul>
+            <li><a href="index.html#home">Homepage</a></li>
+            <li><a href="index.html#about">About</a></li>
+            <li><a href="index.html#services">Services</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="index.html#contact">Contact us</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3>Location &amp; details</h3>
+          <ul>
+            <li>UAE</li>
+            <li><a href="tel:+9715559646461">+971 5559646461</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <p class="copyright">&copy; 2026 Nasar Rahman. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="js/gallery.js"></script>
+</body>
+</html>
