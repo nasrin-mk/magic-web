@@ -272,3 +272,25 @@
     gap: 6px 14px;
   }
 }
+
+@media (max-width: 480px) {
+  :root {
+    --nav-height: 104px;
+  }
+
+  .navbar {
+    flex-direction: column;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .logo img {
+    height: 40px;
+  }
+
+  .nav-links {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 6px 14px;
+  }
+}
