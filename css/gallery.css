@@ -205,7 +205,7 @@
 /* ---------- Mobile ---------- */
 @media (max-width: 768px) {
   .page-hero {
-    padding: calc(var(--nav-height) + 40px) 0 40px;
+    padding: calc(var(--nav-height) + 24px) 0 32px;
   }
 
   .page-hero-inner {

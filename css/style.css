@@ -200,6 +200,11 @@ button {
   background: linear-gradient(to left, rgba(250, 248, 242, 0.95) 70%, rgba(250, 248, 242, 0));
 }
 
+.site-header {
+  position: relative;
+  height: var(--nav-height);
+}
+
 .navbar {
   position: absolute;
   top: 0;
@@ -899,8 +904,12 @@ button {
   }
 
   .occasion.is-active {
-    height: 380px;
-    min-height: 380px;
+    height: 320px;
+    min-height: 320px;
+  }
+
+  .occasion-btn {
+    display: none !important;
   }
 
   .occasion-name,
@@ -1008,8 +1017,10 @@ button {
   .navbar {
     padding: 0 20px;
     height: var(--nav-height);
-    position: sticky;
+    position: fixed;
     top: 0;
+    left: 0;
+    right: 0;
     z-index: 1000;
   }
 
@@ -1087,13 +1098,13 @@ button {
     justify-content: flex-start;
     align-items: center;
     gap: 0;
-    padding: 32px 24px;
+    padding: 12px 24px 24px;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
     border-top: 1px solid var(--border);
     z-index: 999;
     opacity: 0;
     visibility: hidden;
-    transform: translateY(-12px);
+    transform: translateY(-8px);
     transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease;
     overflow-y: auto;
   }
@@ -1117,7 +1128,7 @@ button {
 
   .nav-links a {
     display: block;
-    padding: 18px 0;
+    padding: 15px 0;
     font-size: 16px;
     font-weight: 600;
     letter-spacing: 1.5px;
@@ -1463,8 +1474,8 @@ button {
   }
 
   .occasion.is-active {
-    height: 360px;
-    min-height: 360px;
+    height: 290px;
+    min-height: 290px;
   }
 
   .occasion-name,
@@ -1489,10 +1500,5 @@ button {
   .occasion-toggle-icon {
     top: 15px;
     right: 16px;
-  }
-
-  .occasion-btn {
-    padding: 7px 14px;
-    font-size: 12px;
   }
 }
