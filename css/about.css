@@ -171,7 +171,7 @@
 
 /* ---------- Motto ---------- */
 .statement-break {
-  background: var(--ivory);
+  background: #e3c8b3;
   border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
 }

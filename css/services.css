@@ -8,6 +8,7 @@
 
 /* ---------- Hero ---------- */
 .page-hero {
+  
   border-bottom: 1px solid var(--border);
 }
 
@@ -33,11 +34,14 @@
   line-height: 1.7;
 }
 
+.label{
+  padding-top: 20px;
+}
 
 /* ---------- Jump links ---------- */
 .format-jump-bar {
   padding: 18px 0;
-  background: var(--ivory);
+  background: #e3c8b3;
   border-bottom: 1px solid var(--border);
 }
 
@@ -83,8 +87,8 @@
 .act-image-frame {
   height: 540px;
   overflow: hidden;
-  background: var(--ivory);
-  border: 1px solid var(--border);
+  background: var(--gold);
+  border: 2px solid var(--border);
 }
 
 .act-image-frame img {
@@ -100,7 +104,7 @@
   font-weight: 700;
   letter-spacing: 2px;
   text-transform: uppercase;
-  color: var(--gold);
+  color: #b88a3b;
 }
 
 .act-copy .section-title {
@@ -144,7 +148,7 @@
 /* ---------- Quote ---------- */
 .statement-interlude {
   text-align: center;
-  background: var(--ivory);
+  background: #e3c8b3;
   border-bottom: 1px solid var(--border);
 }
 

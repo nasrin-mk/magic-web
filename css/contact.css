@@ -52,7 +52,7 @@
 /* form */
 .contact-form {
   padding: 36px;
-  background: var(--white);
+  background: #e3c8b3;
   border: 1px solid var(--border);
   border-radius: 8px;
 }
