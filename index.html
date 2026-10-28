@@ -17,6 +17,11 @@
       <a href="#home" class="logo">
         <img src="images/magicnas-logo.png" alt="Magicnas - Professional Magician in Dubai">
       </a>
+      <button type="button" class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
       <ul class="nav-links">
         <li><a href="#home">Home</a></li>
         <li><a href="about.html">About</a></li>
@@ -99,57 +104,67 @@
       <p class="text">Five occasions. Different possibilities.<br>One very good decision.</p>
     </div>
 
-    <div class="occasion-list">
+    <div class="occasion-list" id="occasionList">
 
       <button type="button" class="occasion is-active"
-        data-service="corporate">
-        <img src="images/gallery_image_6.png" alt="">
+        data-service="corporate" aria-expanded="true">
+        <img src="images/gallery_image_6.png" alt="Corporate events magic">
         <span class="occasion-name">Corporate events</span>
         <span class="occasion-desc">
           Give colleagues and clients a shared experience beyond the usual small talk.
           Interactive magic, mentalism and clean humor for conferences, awards nights
           and company dinners.
+          <span class="occasion-btn">Explore Details &rarr;</span>
         </span>
+        <span class="occasion-toggle-icon" aria-hidden="true"></span>
       </button>
 
       <button type="button" class="occasion"
-        data-service="private">
-        <img src="images/gallery_image_2.png" alt="">
+        data-service="private" aria-expanded="false">
+        <img src="images/gallery_image_2.png" alt="Private events magic">
         <span class="occasion-name">Private events</span>
         <span class="occasion-desc">
           Birthdays, anniversaries and milestone evenings, with close-up magic
           that moves through the room and keeps every guest involved.
+          <span class="occasion-btn">Explore Details &rarr;</span>
         </span>
+        <span class="occasion-toggle-icon" aria-hidden="true"></span>
       </button>
 
       <button type="button" class="occasion"
-        data-service="live">
-        <img src="images/gallery_image_7.png" alt="">
+        data-service="live" aria-expanded="false">
+        <img src="images/gallery_image_7.png" alt="Live performances magic">
         <span class="occasion-name">Live performances</span>
         <span class="occasion-desc">
           Table-to-table magic during the reception, so guests meet each other
           and the couple gets a story worth retelling.
+          <span class="occasion-btn">Explore Details &rarr;</span>
         </span>
+        <span class="occasion-toggle-icon" aria-hidden="true"></span>
       </button>
 
       <button type="button" class="occasion"
-        data-service="holiday">
-        <img src="images/gallery_image_3.png" alt="">
+        data-service="holiday" aria-expanded="false">
+        <img src="images/gallery_image_3.png" alt="Holiday parties magic">
         <span class="occasion-name">Holiday parties</span>
         <span class="occasion-desc">
           A festive show for teams and families that is easy to fit into
           your evening and friendly for every age.
+          <span class="occasion-btn">Explore Details &rarr;</span>
         </span>
+        <span class="occasion-toggle-icon" aria-hidden="true"></span>
       </button>
 
       <button type="button" class="occasion"
-        data-service="other">
-        <img src="images/gallery_image_4.png" alt="">
+        data-service="other" aria-expanded="false">
+        <img src="images/gallery_image_4.png" alt="Other occasions magic">
         <span class="occasion-name">Other occasions</span>
         <span class="occasion-desc">
           A host who keeps the program moving, welcomes your speakers
           and adds a moment of wonder between sessions.
+          <span class="occasion-btn">Explore Details &rarr;</span>
         </span>
+        <span class="occasion-toggle-icon" aria-hidden="true"></span>
       </button>
 
     </div>
@@ -606,7 +621,7 @@
   // Second click on same section: open popup
   // ==========================================
 
-  document.addEventListener("DOMContentLoaded", function () {
+  function initServiceAccordionAndPopup() {
 
     var serviceCards = document.querySelectorAll(".occasion");
 
@@ -649,7 +664,7 @@
       corporate: {
         label: "Corporate Events",
         title: "Magic that brings people together",
-        image: "images/magician-cutout.png",
+        image: "images/gallery_image_6.png",
         description:
           "Give colleagues and clients a shared experience beyond the usual small talk. Interactive magic, mentalism and clean humor designed for professional events.",
         features: [
@@ -749,7 +764,6 @@
       });
 
       // WhatsApp number: country code + number, digits only.
-      // Confirm this is the correct business number.
       var whatsappNumber = "9715559646461";
 
       var message =
@@ -791,34 +805,56 @@
     // ------------------------------------------
 
     // Tracks which section was clicked most recently.
-    // This also works when the first section is active by default.
-    var lastClickedService = null;
+    // Initialized to the currently active card so clicking it immediately opens the popup!
+    var lastClickedService = document.querySelector(".occasion.is-active");
 
     serviceCards.forEach(function (card) {
 
-      card.addEventListener("click", function () {
+      card.addEventListener("click", function (e) {
 
-        var isSameSection = lastClickedService === card;
+        var serviceKey = card.getAttribute("data-service");
+        var isDetailsBtn = e.target.closest(".occasion-btn");
+        var isToggleIcon = e.target.closest(".occasion-toggle-icon");
+        var isAlreadyActive = card.classList.contains("is-active");
 
-        // FIRST CLICK on a section:
-        // Activate the accordion and do not open the popup.
-        if (!isSameSection) {
-
-          serviceCards.forEach(function (item) {
-            item.classList.remove("is-active");
-          });
-
-          card.classList.add("is-active");
-          lastClickedService = card;
-
+        // If clicking the "Explore Details" button: open popup immediately!
+        if (isDetailsBtn) {
+          e.stopPropagation();
+          openServicePopup(serviceKey);
           return;
         }
 
-        // SECOND CLICK on the same section:
-        // Open that section's individual popup.
-        var serviceKey = card.getAttribute("data-service");
+        // If card is already active:
+        if (isAlreadyActive) {
+          // On mobile, if clicking the toggle icon on an open card, collapse it
+          if (isToggleIcon && window.innerWidth <= 1000) {
+            e.stopPropagation();
+            card.classList.remove("is-active");
+            card.setAttribute("aria-expanded", "false");
+            lastClickedService = null;
+            return;
+          }
+          // Otherwise, clicking the active card opens the details popup!
+          openServicePopup(serviceKey);
+          return;
+        }
 
-        openServicePopup(serviceKey);
+        // Card is not active: expand it in the accordion
+        serviceCards.forEach(function (item) {
+          item.classList.remove("is-active");
+          item.setAttribute("aria-expanded", "false");
+        });
+
+        card.classList.add("is-active");
+        card.setAttribute("aria-expanded", "true");
+        lastClickedService = card;
+
+        // On mobile, smoothly ensure the newly opened section is visible so it doesn't jump away
+        if (window.innerWidth <= 1000) {
+          setTimeout(function () {
+            card.scrollIntoView({ behavior: "smooth", block: "nearest" });
+          }, 80);
+        }
 
       });
 
@@ -844,9 +880,17 @@
 
     });
 
-  });
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initServiceAccordionAndPopup);
+  } else {
+    initServiceAccordionAndPopup();
+  }
 
 </script>
+
+<script src="js/nav.js"></script>
 
 </body>
 </html>

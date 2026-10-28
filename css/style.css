@@ -246,6 +246,10 @@ button {
   color: var(--gold);
 }
 
+.nav-toggle {
+  display: none;
+}
+
 .hero-text {
   position: absolute;
   top: var(--nav-height);
@@ -373,6 +377,8 @@ button {
   position: relative;
   flex: 1;
   min-width: 0;
+  width: 100%;
+  padding: 0;
   overflow: hidden;
   text-align: left;
   color: var(--white);
@@ -384,7 +390,7 @@ button {
 
 .occasion.is-active {
   flex: 5;
-  cursor: default;
+  cursor: pointer;
 }
 
 .occasion img {
@@ -440,6 +446,34 @@ button {
 
 .occasion.is-active .occasion-desc {
   display: block;
+}
+
+.occasion-toggle-icon {
+  display: none;
+}
+
+.occasion-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 16px;
+  padding: 8px 18px;
+  border-radius: 999px;
+  background: var(--gold);
+  color: #1a1a1a;
+  font-family: "Inter", sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  transition: transform 0.2s ease, background 0.2s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+}
+
+.occasion-btn:hover {
+  background: #dfb574;
+  transform: translateX(3px);
 }
 
 
@@ -852,36 +886,76 @@ button {
   .occasion-list {
     flex-direction: column;
     height: auto;
+    gap: 12px;
   }
 
   .occasion {
     flex: none;
-    height: 64px;
-    transition: height 0.4s ease;
+    width: 100%;
+    height: 72px;
+    min-height: 72px;
+    border-radius: 12px;
+    transition: height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .occasion.is-active {
     height: 380px;
+    min-height: 380px;
   }
 
   .occasion-name,
   .occasion.is-active .occasion-name {
-    top: 16px;
+    top: 20px;
     left: 20px;
+    right: 60px;
     transform: none;
     font-size: 22px;
     writing-mode: horizontal-tb;
+    white-space: normal;
   }
 
   .occasion.is-active .occasion-name {
-    font-size: 28px;
+    font-size: 26px;
   }
 
   .occasion-desc {
     left: 20px;
     right: 20px;
     bottom: 22px;
-    font-size: 15px;
+    max-width: none;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .occasion-toggle-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 19px;
+    right: 20px;
+    z-index: 3;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.15);
+    transition: transform 0.3s ease, background 0.3s ease;
+  }
+
+  .occasion-toggle-icon::before {
+    content: "";
+    width: 8px;
+    height: 8px;
+    border-right: 2px solid #ffffff;
+    border-bottom: 2px solid #ffffff;
+    transform: rotate(45deg);
+    transition: transform 0.3s ease;
+    margin-top: -3px;
+  }
+
+  .occasion.is-active .occasion-toggle-icon {
+    background: rgba(200, 157, 92, 0.45);
+    transform: rotate(180deg);
   }
 
   .about {
@@ -933,6 +1007,10 @@ button {
 
   .navbar {
     padding: 0 20px;
+    height: var(--nav-height);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
   }
 
   .logo {
@@ -947,12 +1025,113 @@ button {
     height: 64px;
   }
 
+  /* Hamburger Toggle Button */
+  .nav-toggle {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 1002;
+    gap: 5px;
+    border-radius: 8px;
+    transition: background-color 0.2s ease;
+  }
+
+  .nav-toggle:hover,
+  .nav-toggle:focus-visible {
+    background: rgba(200, 157, 92, 0.12);
+    outline: none;
+  }
+
+  .nav-toggle span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--text-main);
+    border-radius: 2px;
+    transition: transform 0.3s ease, opacity 0.3s ease, background-color 0.3s ease;
+    transform-origin: center;
+  }
+
+  .nav-toggle.is-active span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+    background: var(--gold);
+  }
+
+  .nav-toggle.is-active span:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+
+  .nav-toggle.is-active span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+    background: var(--gold);
+  }
+
+  /* Mobile Navigation Dropdown */
   .nav-links {
-    gap: 14px;
+    position: fixed;
+    top: var(--nav-height);
+    left: 0;
+    right: 0;
+    height: calc(100vh - var(--nav-height));
+    height: calc(100dvh - var(--nav-height));
+    background: #ffffff;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 0;
+    padding: 32px 24px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+    border-top: 1px solid var(--border);
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-12px);
+    transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease;
+    overflow-y: auto;
+  }
+
+  .nav-links.is-open {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  .nav-links li {
+    width: 100%;
+    max-width: 320px;
+    text-align: center;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  }
+
+  .nav-links li:last-child {
+    border-bottom: none;
   }
 
   .nav-links a {
-    font-size: 12px;
+    display: block;
+    padding: 18px 0;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    color: var(--text-main);
+    transition: color 0.2s ease;
+  }
+
+  .nav-links a:hover,
+  .nav-links a.active {
+    color: var(--gold);
+  }
+
+  body.nav-menu-open {
+    overflow: hidden;
   }
 
   .center .section-title,
@@ -1171,72 +1350,149 @@ button {
   opacity: 0.9;
 }
 
-/* Tablet */
+/* Tablet & Mobile Popup */
 @media (max-width: 768px) {
   .service-popup {
-    padding: 16px;
+    padding: 14px;
   }
 
   .service-popup-box {
-    display: block;
+    display: flex;
+    flex-direction: column;
     width: 100%;
-    max-height: 92vh;
+    max-height: 90vh;
+    max-height: 90dvh;
     border-radius: 16px;
+    overflow: hidden;
   }
 
   .service-popup-image-wrap {
-    height: 220px;
-    min-height: 220px;
+    height: 180px;
+    min-height: 180px;
+    flex: 0 0 180px;
   }
 
   .service-popup-image-wrap img {
-    height: 220px;
-    min-height: 220px;
+    width: 100%;
+    height: 100%;
+    min-height: 180px;
+    object-fit: cover;
   }
 
   .service-popup-body {
-    padding: 36px 24px 28px;
-    max-height: calc(92vh - 220px);
+    padding: 24px 20px 24px;
+    flex: 1 1 auto;
+    max-height: none;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
   }
 
   .service-popup-close {
-    top: 10px;
-    right: 10px;
-    background: rgba(255, 255, 255, 0.92);
+    top: 12px;
+    right: 12px;
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    z-index: 10;
   }
 
   .service-popup-body h3 {
-    font-size: 30px;
+    font-size: 24px;
+    margin-bottom: 12px;
+  }
+
+  .service-popup-body p {
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 18px;
+  }
+
+  .service-popup-features {
+    gap: 8px;
+    margin-bottom: 22px;
+  }
+
+  .service-popup-whatsapp {
+    width: 100%;
+    min-height: 48px;
   }
 }
 
 /* Small mobile */
 @media (max-width: 480px) {
   .service-popup {
-    padding: 10px;
+    padding: 8px;
   }
 
   .service-popup-box {
     max-height: 94vh;
+    max-height: 94dvh;
+    border-radius: 14px;
   }
 
   .service-popup-image-wrap,
   .service-popup-image-wrap img {
-    height: 180px;
-    min-height: 180px;
+    height: 150px;
+    min-height: 150px;
+    flex: 0 0 150px;
   }
 
   .service-popup-body {
-    padding: 30px 20px 24px;
-    max-height: calc(94vh - 180px);
+    padding: 20px 16px 20px;
+  }
+
+  .service-popup-body h3 {
+    font-size: 21px;
+    line-height: 1.2;
   }
 
   .service-popup-body p {
-    font-size: 14px;
-    line-height: 1.65;
+    font-size: 13px;
+    line-height: 1.6;
+    margin-bottom: 16px;
   }
 
-  .service-popup-whatsapp {
-    width: 100%;
+  .service-popup-feature {
+    font-size: 13px;
+  }
+
+  .occasion {
+    height: 64px;
+    min-height: 64px;
+  }
+
+  .occasion.is-active {
+    height: 360px;
+    min-height: 360px;
+  }
+
+  .occasion-name,
+  .occasion.is-active .occasion-name {
+    top: 18px;
+    left: 16px;
+    right: 56px;
+    font-size: 18px;
+  }
+
+  .occasion.is-active .occasion-name {
+    font-size: 22px;
+  }
+
+  .occasion-desc {
+    left: 16px;
+    right: 16px;
+    bottom: 18px;
+    font-size: 13px;
+  }
+
+  .occasion-toggle-icon {
+    top: 15px;
+    right: 16px;
+  }
+
+  .occasion-btn {
+    padding: 7px 14px;
+    font-size: 12px;
   }
 }
