@@ -43,7 +43,7 @@ require_once __DIR__ . '/../layouts/header.php';
         <h3 class="direct-title">Or reach Magicnas directly</h3>
         <div class="direct">
           <p><strong>Email:</strong> <a href="mailto:magicnas@email.com">magicnas@email.com</a></p>
-          <p><strong>Phone:</strong> <a href="tel:+9715559646461">+971 5559646461</a></p>
+          <p><strong>Phone:</strong> <a href="tel:+9715555966461">+971 5559646461</a></p>
           <p><strong>Location:</strong> UAE, meetings by appointment</p>
           <p><strong>Hours:</strong> Mon &ndash; Sat, 10am &ndash; 8pm. Sunday: events only</p>
         </div>

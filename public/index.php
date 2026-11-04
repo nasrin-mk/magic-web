@@ -49,7 +49,12 @@ $router->get('/admin/enquiries', 'AdminController@enquiries');
 $router->post('/admin/enquiries/delete', 'AdminController@deleteEnquiry');
 $router->post('/admin/enquiries/status', 'AdminController@updateEnquiryStatus');
 
-$router->get('/admin/videos', 'AdminController@videos');
+$router->get('/admin/media', 'AdminController@media');
+$router->get('/admin/videos', 'AdminController@media');
+$router->get('/admin/gallery', 'AdminController@media');
+$router->post('/admin/images/upload', 'AdminController@uploadImage');
+$router->post('/admin/images/add', 'AdminController@uploadImage');
+$router->post('/admin/images/delete', 'AdminController@deleteImage');
 $router->post('/admin/videos/add', 'AdminController@addVideo');
 $router->post('/admin/videos/delete', 'AdminController@deleteVideo');
 

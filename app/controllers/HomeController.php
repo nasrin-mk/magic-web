@@ -1,6 +1,7 @@
 <?php
 
 require_once __DIR__ . '/../core/Controller.php';
+require_once __DIR__ . '/../models/Blog.php';
 
 class HomeController extends Controller
 {
@@ -9,9 +10,12 @@ class HomeController extends Controller
      */
     public function index(): void
     {
+        $blogs = Blog::getLatestPosts(3);
+
         $this->render('pages/home', [
             'pageTitle' => 'Magicnas | Professional Magician in Dubai',
             'activeNav' => 'home',
+            'blogs'     => $blogs,
         ]);
     }
 

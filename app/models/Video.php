@@ -34,31 +34,37 @@ class Video
     }
 
     /**
-     * Store a new YouTube video in the database.
+     * Create a YouTube video record in the gallery_videos table.
      */
-    public static function create(string $title, string $url, int $displayOrder = 0): bool
+    public static function create(string $title, string $url, string $category = 'on-stage', int $displayOrder = 0): bool
     {
         $youtubeId = self::extractYoutubeId($url);
         if (!$youtubeId) {
             return false;
         }
 
+        $validCategories = ['on-stage', 'close-up', 'events'];
+        if (!in_array($category, $validCategories, true)) {
+            $category = 'on-stage';
+        }
+
         $db = Database::getConnection();
         $stmt = $db->prepare("
-            INSERT INTO gallery_videos (title, youtube_url, youtube_id, display_order, created_at)
-            VALUES (:title, :youtube_url, :youtube_id, :display_order, NOW())
+            INSERT INTO gallery_videos (title, youtube_url, youtube_id, category, display_order, created_at)
+            VALUES (:title, :youtube_url, :youtube_id, :category, :display_order, NOW())
         ");
 
         return $stmt->execute([
             ':title'         => trim($title),
             ':youtube_url'   => trim($url),
             ':youtube_id'    => $youtubeId,
+            ':category'      => $category,
             ':display_order' => $displayOrder,
         ]);
     }
 
     /**
-     * Fetch all videos ordered by display order and creation date.
+     * Fetch all videos ordered by display_order ASC, created_at DESC.
      */
     public static function all(): array
     {
@@ -75,12 +81,12 @@ class Video
         $db = Database::getConnection();
         $stmt = $db->prepare("SELECT * FROM gallery_videos WHERE id = :id");
         $stmt->execute([':id' => $id]);
-        $video = $stmt->fetch();
-        return $video ?: null;
+        $row = $stmt->fetch();
+        return $row ?: null;
     }
 
     /**
-     * Delete a video by ID.
+     * Delete a video record by ID.
      */
     public static function delete(int $id): bool
     {

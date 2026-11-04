@@ -356,8 +356,8 @@ $pageTitle = $pageTitle ?? 'Admin Dashboard | Magicnas';
         <a href="<?= BASE_URL ?>/admin/enquiries" class="admin-nav-item <?= ($activeTab === 'enquiries') ? 'active' : '' ?>">
           &#9993; Enquiries
         </a>
-        <a href="<?= BASE_URL ?>/admin/videos" class="admin-nav-item <?= ($activeTab === 'videos') ? 'active' : '' ?>">
-          &#9654; YouTube Videos
+        <a href="<?= BASE_URL ?>/admin/media" class="admin-nav-item <?= ($activeTab === 'media' || $activeTab === 'videos') ? 'active' : '' ?>">
+          &#127916; Media Manager
         </a>
       </nav>
     </div>

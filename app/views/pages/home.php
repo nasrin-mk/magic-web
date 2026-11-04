@@ -173,8 +173,12 @@ require_once __DIR__ . '/../layouts/header.php';
         <h3 id="servicePopupTitle"></h3>
         <p id="servicePopupDescription"></p>
         <div class="service-popup-features" id="servicePopupFeatures"></div>
-        <a id="servicePopupWhatsapp" class="service-popup-whatsapp" href="<?= BASE_URL ?>/contact">
-          <span>Enquire about this service &rarr;</span>
+        <a id="servicePopupWhatsapp"
+           class="service-popup-whatsapp"
+           href="#"
+           target="_blank"
+           rel="noopener">
+          <span>WhatsApp to enquire</span>
         </a>
       </div>
     </div>
@@ -297,6 +301,130 @@ require_once __DIR__ . '/../layouts/header.php';
       </div>
     </div>
   </section>
+
+  <!-- Blog / Latest Stories (Dynamic from Blogger RSS) -->
+  <section class="section bg-ivory" id="blog">
+    <div class="container">
+
+      <div style="text-align: center; max-width: 680px; margin: 0 auto 40px;">
+        <p class="label" style="letter-spacing: 2px;">STORIES &amp; ARTICLES</p>
+        <h2 class="section-title">
+          Professional Magician in <span class="gold">Dubai &amp; Beyond</span>
+        </h2>
+        <p class="text" style="margin-top: 10px;">
+          Read the latest updates, event highlights, and travel stories directly from our blog.
+        </p>
+      </div>
+
+      <?php if (!empty($blogs)): ?>
+        <div class="blog-grid">
+          <?php foreach ($blogs as $post): ?>
+            <article class="blog-card">
+              <a href="<?= htmlspecialchars($post['link']) ?>" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: inherit; display: flex; flex-direction: column; height: 100%;">
+                <div class="blog-card-img-wrap">
+                  <img src="<?= htmlspecialchars($post['thumbnail']) ?>" alt="<?= htmlspecialchars($post['title']) ?>" loading="lazy">
+                </div>
+                <div class="blog-body">
+                  <div style="margin-bottom: 10px;">
+                    <span class="blog-date-badge">
+                      <?= htmlspecialchars($post['date']) ?>
+                    </span>
+                  </div>
+                  <h3 class="blog-post-title">
+                    <?= htmlspecialchars($post['title']) ?>
+                  </h3>
+                  <p class="blog-post-snippet">
+                    <?= htmlspecialchars($post['snippet']) ?>
+                  </p>
+                  <span class="read-more">
+                    Read More &rarr;
+                  </span>
+                </div>
+              </a>
+            </article>
+          <?php endforeach; ?>
+        </div>
+      <?php else: ?>
+        <p style="text-align: center; color: #777;">Latest stories are temporarily unavailable. Please visit our blog directly.</p>
+      <?php endif; ?>
+
+      <div style="text-align: center; margin-top: 40px;">
+        <a href="https://www.magicnas.com" target="_blank" rel="noopener noreferrer" class="btn btn-gold">
+          Visit Full Blog &rarr;
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <style>
+    /* Blog Grid Enhancements */
+    .blog-card {
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      background: #fff;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      border-radius: 8px;
+    }
+    .blog-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.12);
+      border-color: rgba(212, 175, 55, 0.5);
+    }
+    .blog-card-img-wrap {
+      overflow: hidden;
+      position: relative;
+      height: 220px;
+      background: #0f1217;
+    }
+    .blog-card-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+    .blog-card:hover .blog-card-img-wrap img {
+      transform: scale(1.06);
+    }
+    .blog-date-badge {
+      display: inline-block;
+      background: rgba(212, 175, 55, 0.12);
+      color: #b8972e;
+      border: 1px solid rgba(212, 175, 55, 0.35);
+      padding: 3px 10px;
+      border-radius: 4px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .blog-post-title {
+      font-family: 'Cinzel', serif;
+      font-size: 1.15rem;
+      line-height: 1.4;
+      color: #111;
+      margin: 0 0 10px;
+      transition: color 0.2s ease;
+    }
+    .blog-card:hover .blog-post-title {
+      color: #b8972e;
+    }
+    .blog-post-snippet {
+      color: #666;
+      font-size: 0.9rem;
+      line-height: 1.6;
+      margin: 0 0 16px;
+      flex: 1;
+    }
+    @media (max-width: 900px) {
+      .blog-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 
   <!-- Contact CTA -->
   <section class="section cta" id="contact">
@@ -456,46 +584,87 @@ require_once __DIR__ . '/../layouts/header.php';
     function openServicePopup(serviceKey) {
       var service = services[serviceKey];
       if (!service) return;
+
       popupImage.src = service.image;
       popupImage.alt = service.title;
       popupLabel.textContent = service.label;
       popupTitle.textContent = service.title;
       popupDescription.textContent = service.description;
+
+      // Clear the previous service features
       popupFeatures.innerHTML = "";
-      service.features.forEach(function (f) {
-        var span = document.createElement("span");
-        span.className = "service-popup-feature-tag";
-        span.textContent = f;
-        popupFeatures.appendChild(span);
+      service.features.forEach(function (feature) {
+        var item = document.createElement("div");
+        item.className = "service-popup-feature";
+        item.textContent = feature;
+        popupFeatures.appendChild(item);
       });
+
+      // WhatsApp number: country code + number, digits only.
+      var whatsappNumber = "9715555966461";
+      var message = "Hi, I would like to enquire about " + service.label + ".";
+      popupWhatsapp.href = "https://wa.me/" + whatsappNumber + "?text=" + encodeURIComponent(message);
+
       popup.classList.add("is-open");
       popup.setAttribute("aria-hidden", "false");
+
+      // Prevent background scrolling while the popup is open
+      popup.dataset.previousOverflow = document.body.style.overflow;
       document.body.style.overflow = "hidden";
     }
 
     function closeServicePopup() {
       popup.classList.remove("is-open");
       popup.setAttribute("aria-hidden", "true");
-      document.body.style.overflow = "";
+      document.body.style.overflow = popup.dataset.previousOverflow || "";
     }
 
-    var lastClickedService = null;
+    var lastClickedService = document.querySelector(".occasion.is-active");
+
     serviceCards.forEach(function (card) {
-      card.addEventListener("click", function () {
+      card.addEventListener("click", function (e) {
         var serviceKey = card.getAttribute("data-service");
-        if (card.classList.contains("is-active")) {
+        var isDetailsBtn = e.target.closest(".occasion-btn");
+        var isToggleIcon = e.target.closest(".occasion-toggle-icon");
+        var isAlreadyActive = card.classList.contains("is-active");
+
+        // If clicking the "Explore Details" button: open popup immediately!
+        if (isDetailsBtn) {
+          e.stopPropagation();
           openServicePopup(serviceKey);
           return;
         }
+
+        // If card is already active:
+        if (isAlreadyActive) {
+          // On mobile, if clicking the toggle icon on an open card, collapse it
+          if (isToggleIcon && window.innerWidth <= 1000) {
+            e.stopPropagation();
+            card.classList.remove("is-active");
+            card.setAttribute("aria-expanded", "false");
+            lastClickedService = null;
+            return;
+          }
+          // Otherwise, clicking the active card opens the details popup!
+          openServicePopup(serviceKey);
+          return;
+        }
+
+        // Card is not active: expand it in the accordion
         serviceCards.forEach(function (item) {
           item.classList.remove("is-active");
           item.setAttribute("aria-expanded", "false");
         });
+
         card.classList.add("is-active");
         card.setAttribute("aria-expanded", "true");
         lastClickedService = card;
+
+        // On mobile, smoothly ensure the newly opened section is visible so it doesn't jump away
         if (window.innerWidth <= 1000) {
-          setTimeout(function () { card.scrollIntoView({ behavior: "smooth", block: "nearest" }); }, 80);
+          setTimeout(function () {
+            card.scrollIntoView({ behavior: "smooth", block: "nearest" });
+          }, 80);
         }
       });
     });
