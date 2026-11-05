@@ -28,12 +28,12 @@ class AdminController extends Controller
     }
 
     /**
-     * GET /admin or GET /admin/login
+     * GET /admin/login
      */
     public function login(): void
     {
         if (!empty($_SESSION['admin_logged_in']) && $_SESSION['admin_logged_in'] === true) {
-            $this->redirect('/admin/enquiries');
+            $this->redirect('/admin');
             return;
         }
 
@@ -70,7 +70,7 @@ class AdminController extends Controller
             $_SESSION['admin_username'] = $admin['username'];
 
             $this->setFlash('success', 'Welcome back, ' . htmlspecialchars($admin['username']) . '!');
-            $this->redirect('/admin/enquiries');
+            $this->redirect('/admin');
             return;
         }
 
@@ -93,6 +93,105 @@ class AdminController extends Controller
         }
         $this->setFlash('success', 'You have been securely logged out.');
         $this->redirect('/admin/login');
+    }
+
+    /**
+     * GET /admin or GET /admin/dashboard
+     * Admin Homepage / Dashboard
+     */
+    public function dashboard(): void
+    {
+        $this->requireAuth();
+
+        $enquiries = [];
+        $images = [];
+        $videos = [];
+        $dbConnected = true;
+
+        try {
+            $enquiries = Enquiry::all();
+        } catch (\Throwable $e) {
+            $dbConnected = false;
+        }
+
+        try {
+            $images = GalleryImage::all();
+        } catch (\Throwable $e) {
+            $dbConnected = false;
+        }
+
+        try {
+            $videos = Video::all();
+        } catch (\Throwable $e) {
+            $dbConnected = false;
+        }
+
+        // Metrics calculations
+        $totalEnquiries = count($enquiries);
+        $unreadEnquiries = 0;
+        $readEnquiries = 0;
+        $archivedEnquiries = 0;
+        $eventTypeCounts = [];
+
+        foreach ($enquiries as $item) {
+            $status = $item['status'] ?? 'unread';
+            if ($status === 'unread') {
+                $unreadEnquiries++;
+            } elseif ($status === 'read') {
+                $readEnquiries++;
+            } elseif ($status === 'archived') {
+                $archivedEnquiries++;
+            }
+
+            $eventType = !empty($item['event_type']) ? trim($item['event_type']) : 'General Enquiry';
+            $eventTypeCounts[$eventType] = ($eventTypeCounts[$eventType] ?? 0) + 1;
+        }
+
+        $totalImages = count($images);
+        $totalVideos = count($videos);
+        $totalMedia = $totalImages + $totalVideos;
+
+        $categoryCounts = [
+            'on-stage' => 0,
+            'close-up' => 0,
+            'events'   => 0,
+        ];
+
+        foreach ($images as $img) {
+            $cat = $img['category'] ?? 'on-stage';
+            if (isset($categoryCounts[$cat])) {
+                $categoryCounts[$cat]++;
+            }
+        }
+
+        foreach ($videos as $vid) {
+            $cat = $vid['category'] ?? 'on-stage';
+            if (isset($categoryCounts[$cat])) {
+                $categoryCounts[$cat]++;
+            }
+        }
+
+        $recentEnquiries = array_slice($enquiries, 0, 5);
+        $recentImages = array_slice($images, 0, 4);
+        $recentVideos = array_slice($videos, 0, 3);
+
+        $this->render('admin/dashboard', [
+            'pageTitle'         => 'Admin Dashboard | Magicnas Control Panel',
+            'activeTab'         => 'dashboard',
+            'totalEnquiries'    => $totalEnquiries,
+            'unreadEnquiries'   => $unreadEnquiries,
+            'readEnquiries'     => $readEnquiries,
+            'archivedEnquiries' => $archivedEnquiries,
+            'eventTypeCounts'   => $eventTypeCounts,
+            'recentEnquiries'   => $recentEnquiries,
+            'totalImages'       => $totalImages,
+            'totalVideos'       => $totalVideos,
+            'totalMedia'        => $totalMedia,
+            'categoryCounts'    => $categoryCounts,
+            'recentImages'      => $recentImages,
+            'recentVideos'      => $recentVideos,
+            'dbConnected'       => $dbConnected,
+        ]);
     }
 
     /**

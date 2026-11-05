@@ -35,11 +35,8 @@ $router->get('/contact.html', 'HomeController@contact');
 $router->post('/enquiry/submit', 'EnquiryController@submit');
 
 // Admin Routes
-$router->get('/admin', function() {
-    $base = defined('BASE_URL') ? BASE_URL : '';
-    header("Location: " . $base . "/admin/enquiries");
-    exit;
-});
+$router->get('/admin', 'AdminController@dashboard');
+$router->get('/admin/dashboard', 'AdminController@dashboard');
 $router->get('/admin/login', 'AdminController@login');
 $router->post('/admin/login', 'AdminController@authenticate');
 $router->get('/admin/logout', 'AdminController@logout');

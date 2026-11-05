@@ -44,7 +44,6 @@
             <li><a href="<?= BASE_URL ?>/services">Services</a></li>
             <li><a href="<?= BASE_URL ?>/gallery">Gallery</a></li>
             <li><a href="<?= BASE_URL ?>/contact">Contact us</a></li>
-            <li><a href="<?= BASE_URL ?>/admin/login" style="color: #d4af37;">&bull; Admin Portal</a></li>
           </ul>
         </div>
 

@@ -103,5 +103,18 @@ require_once __DIR__ . '/../layouts/admin_layout.php';
   &copy; <?= date('Y') ?> Magicnas Administration. All rights reserved.
 </footer>
 
+</div> <!-- /.admin-content-area -->
+
+<div class="admin-sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+
+<script>
+function toggleSidebar() {
+  const sidebar = document.getElementById('adminSidebar');
+  const overlay = document.getElementById('sidebarOverlay');
+  if (sidebar) sidebar.classList.toggle('open');
+  if (overlay) overlay.classList.toggle('open');
+}
+</script>
+
 </body>
 </html>
