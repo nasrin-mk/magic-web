@@ -4,7 +4,74 @@
    Header, footer, buttons, labels, containers and video cards
    all come from style.css, so this page matches the home page.
    ========================================================== */
+/* Desktop: Hide hamburger button */
+.menu-toggle {
+    display: none;
+}
 
+/* Mobile Navigation */
+@media (max-width: 768px) {
+
+    .navbar {
+        position: absolute;
+        padding: 0 20px;
+        height: 64px;
+    }
+
+    /* Hamburger button */
+    .menu-toggle {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 6px;
+        width: 40px;
+        height: 40px;
+        padding: 7px;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        z-index: 10;
+    }
+
+    .menu-toggle span {
+        display: block;
+        width: 26px;
+        height: 2px;
+        background: #252525;
+        transition: 0.3s ease;
+    }
+
+    /* Navigation dropdown */
+    .nav-links {
+        display: none;
+        position: absolute;
+        top: 64px;
+        left: 0;
+        width: 100%;
+        flex-direction: column;
+        gap: 0;
+        padding: 10px 20px 20px;
+        background: #ffffff;
+        border-top: 1px solid #e4dfd4;
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.08);
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .nav-links li {
+        width: 100%;
+        border-bottom: 1px solid #e4dfd4;
+    }
+
+    .nav-links a {
+        display: block;
+        padding: 13px 5px;
+        font-size: 14px;
+    }
+
+}
 
 /* ---------- Banner ---------- */
 .about-hero-banner {
